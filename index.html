@@ -2,12 +2,30 @@
 <html>
   <head>
     <title>Name That Tune</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
 
     <h1>Name That Tune</h1>
 
-    <button>Play Random Song</button>
+    <button id="loginButton">Play Random Song</button>
+
+    <script>
+      const clientId = "b89a961c930940ab9414413d4a76884b";
+      const redirectUri = window.location.origin + window.location.pathname;
+      const scopes = "playlist-read-private";
+
+      document.getElementById("loginButton").onclick = () => {
+        const authUrl =
+          "https://accounts.spotify.com/authorize" +
+          "?response_type=token" +
+          "&client_id=" + clientId +
+          "&scope=" + encodeURIComponent(scopes) +
+          "&redirect_uri=" + encodeURIComponent(redirectUri);
+
+        window.location = authUrl;
+      };
+    </script>
 
   </body>
 </html>
